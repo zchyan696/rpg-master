@@ -1,26 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-peaks-red: #8B0000;
+  --color-peaks-red-light: #A50000;
+  --color-peaks-black: #0f0f0f;
+  --color-peaks-dark: #1a1a1a;
+  --color-peaks-darker: #141414;
+  --color-peaks-cream: #F5F0E8;
+  --color-peaks-cream-dark: #E8E0D0;
+  --color-peaks-green: #1B4332;
+  --color-peaks-green-light: #2D6A4F;
+  --color-peaks-gold: #C9A84C;
+  --color-peaks-gold-dim: #8B6914;
+  --color-peaks-muted: #6B6560;
+  --color-peaks-border: #2a2a2a;
+  --color-peaks-card: #1e1e1e;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Crimson Text', Georgia, serif;
+  --font-typewriter: 'Special Elite', 'Courier New', monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scrollbar-color: #2a2a2a #0f0f0f;
+  scrollbar-width: thin;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #0f0f0f;
+  color: #F5F0E8;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  min-height: 100vh;
 }
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8B0000;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+/* Zigzag pattern */
+.zigzag {
+  background-image:
+    linear-gradient(135deg, #8B0000 25%, transparent 25%) -20px 0,
+    linear-gradient(225deg, #8B0000 25%, transparent 25%) -20px 0,
+    linear-gradient(315deg, #8B0000 25%, transparent 25%),
+    linear-gradient(45deg, #8B0000 25%, transparent 25%);
+  background-size: 40px 40px;
+  background-color: #F5F0E8;
+}
+
+.zigzag-border {
+  background-image:
+    linear-gradient(135deg, #8B0000 25%, transparent 25%) -10px 0,
+    linear-gradient(225deg, #8B0000 25%, transparent 25%) -10px 0,
+    linear-gradient(315deg, #8B0000 25%, transparent 25%),
+    linear-gradient(45deg, #8B0000 25%, transparent 25%);
+  background-size: 20px 20px;
+  background-color: #F5F0E8;
+  height: 20px;
+}
+
+/* Redroom floor */
+.redroom-bg {
+  background-image:
+    linear-gradient(135deg, #1a0a0a 25%, transparent 25%) -30px 0,
+    linear-gradient(225deg, #1a0a0a 25%, transparent 25%) -30px 0,
+    linear-gradient(315deg, #1a0a0a 25%, transparent 25%),
+    linear-gradient(45deg, #1a0a0a 25%, transparent 25%);
+  background-size: 60px 60px;
+  background-color: #8B0000;
+}
+
+/* Wood grain sidebar effect */
+.wood-grain {
+  background: linear-gradient(
+    180deg,
+    #1a1209 0%,
+    #1e140b 10%,
+    #1a1108 20%,
+    #1d1309 30%,
+    #1b120a 40%,
+    #1e140b 50%,
+    #1a1108 60%,
+    #1c130a 70%,
+    #1e140b 80%,
+    #1a1108 90%,
+    #1c120a 100%
+  );
+}
+
+/* Card hover glow */
+.card-glow:hover {
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.2), 0 0 40px rgba(139, 0, 0, 0.05);
+}
+
+/* Text blur reveal */
+.blur-secret {
+  filter: blur(6px);
+  user-select: none;
+  transition: filter 0.4s ease;
+}
+.blur-secret:hover,
+.blur-secret-container:hover .blur-secret {
+  filter: blur(0px);
+}
+
+/* Status badge */
+.badge-found { background: rgba(45, 106, 79, 0.3); color: #6fcf97; border-color: rgba(45, 106, 79, 0.5); }
+.badge-hidden { background: rgba(139, 0, 0, 0.2); color: #eb5757; border-color: rgba(139, 0, 0, 0.4); }
+.badge-red-herring { background: rgba(201, 168, 76, 0.15); color: #C9A84C; border-color: rgba(201, 168, 76, 0.3); }
+
+/* Input style */
+input, textarea, select {
+  background: #141414;
+  border: 1px solid #2a2a2a;
+  color: #F5F0E8;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 1rem;
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #8B0000;
+}
+input::placeholder, textarea::placeholder {
+  color: #6B6560;
+}
+
+/* Select option */
+select option {
+  background: #1a1a1a;
+}
+
+/* Atmospheric quote */
+.atmospheric-text {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  opacity: 0.7;
+}
+
+/* Role colors */
+.role-suspect { color: #eb5757; }
+.role-witness { color: #C9A84C; }
+.role-resident { color: #9b8ea0; }
+.role-victim { color: #8B0000; }
+.role-unknown { color: #6B6560; }
+
+/* Category colors */
+.cat-forest { color: #6fcf97; }
+.cat-diner { color: #C9A84C; }
+.cat-residential { color: #9b8ea0; }
+.cat-police { color: #6b9fd4; }
+.cat-business { color: #e0a458; }
+.cat-other { color: #6B6560; }
+
+/* Event type colors */
+.type-event { color: #9b8ea0; }
+.type-clue { color: #C9A84C; }
+.type-death { color: #eb5757; }
+.type-discovery { color: #6fcf97; }
