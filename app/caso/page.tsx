@@ -16,7 +16,7 @@ const eventTypeLabel: Record<string, string> = {
 export default async function CasoPage() {
   const [clues, events] = await Promise.all([
     prisma.clue.findMany({ orderBy: { createdAt: 'desc' } }),
-    prisma.event.findMany({ orderBy: { createdAt: 'asc' } }),
+    prisma.event.findMany({ orderBy: { order: 'asc' } }),
   ])
 
   const found = clues.filter((c) => c.status === 'found')

@@ -7,25 +7,31 @@ import { ArrowLeft, Skull, MapPin, Shield, Eye, AlertTriangle } from 'lucide-rea
 import DeleteButton from './DeleteButton'
 
 const narrativeColors: Record<string, string> = {
-  vitima:            '#8B0000',
-  assassino:         '#eb5757',
-  red_herring_forte: '#e0a458',
-  red_herring_medio: '#C9A84C',
-  red_herring_fraco: '#9b8ea0',
-  testemunha_chave:  '#6b9fd4',
-  testemunha:        '#6B6560',
-  autoridade:        '#2D6A4F',
+  vitima:               '#8B0000',
+  vitima_2:             '#5a0000',
+  orquestrador:         '#6B0050',
+  assassino_real:       '#eb5757',
+  assassino_controlado: '#9b59b6',
+  red_herring_forte:    '#e0a458',
+  red_herring_medio:    '#C9A84C',
+  red_herring_fraco:    '#9b8ea0',
+  testemunha_chave:     '#6b9fd4',
+  testemunha:           '#6B6560',
+  autoridade:           '#2D6A4F',
 }
 
 const narrativeLabels: Record<string, string> = {
-  vitima:            'Vítima',
-  assassino:         'Assassino',
-  red_herring_forte: 'Red Herring Forte',
-  red_herring_medio: 'Red Herring Médio',
-  red_herring_fraco: 'Red Herring Fraco',
-  testemunha_chave:  'Testemunha Chave',
-  testemunha:        'Testemunha',
-  autoridade:        'Autoridade',
+  vitima:               'Vítima',
+  vitima_2:             'Vítima 2',
+  orquestrador:         'Orquestrador',
+  assassino_real:       'Assassino Real',
+  assassino_controlado: 'Assassino Controlado',
+  red_herring_forte:    'Red Herring Forte',
+  red_herring_medio:    'Red Herring Médio',
+  red_herring_fraco:    'Red Herring Fraco',
+  testemunha_chave:     'Testemunha Chave',
+  testemunha:           'Testemunha',
+  autoridade:           'Autoridade',
 }
 
 export default async function PersonagemPage({ params }: { params: Promise<{ id: string }> }) {

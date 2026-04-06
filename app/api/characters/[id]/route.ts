@@ -16,6 +16,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     data: {
       name: body.name,
       role: body.role,
+      narrativeRole: body.narrativeRole ?? undefined,
       occupation: body.occupation ?? null,
       description: body.description ?? null,
       secrets: body.secrets ?? null,

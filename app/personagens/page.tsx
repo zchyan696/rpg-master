@@ -2,16 +2,20 @@ import { prisma } from '@/lib/prisma'
 import PageTransition from '@/components/PageTransition'
 import ZigzagDivider from '@/components/ZigzagDivider'
 import CharacterCard from '@/components/CharacterCard'
+import Link from 'next/link'
 
 const narrativeGroups: { key: string; label: string; color: string; description: string }[] = [
-  { key: 'vitima',            label: 'Vítima',            color: '#8B0000', description: 'Centro do caso' },
-  { key: 'assassino',         label: 'Assassino',         color: '#eb5757', description: 'O culpado real — não revelar aos jogadores' },
-  { key: 'red_herring_forte', label: 'Red Herring Forte', color: '#e0a458', description: 'Suspeito crível com evidências sólidas contra ele' },
-  { key: 'red_herring_medio', label: 'Red Herring Médio', color: '#C9A84C', description: 'Suspeito com comportamento suspeito mas alibi possível' },
-  { key: 'red_herring_fraco', label: 'Red Herring Fraco', color: '#9b8ea0', description: 'Parece suspeito por contexto, alibi verificável' },
-  { key: 'testemunha_chave',  label: 'Testemunha Chave',  color: '#6b9fd4', description: 'Sabe algo crucial — precisa de abordagem cuidadosa' },
-  { key: 'testemunha',        label: 'Testemunha',        color: '#6B6560', description: 'Informação útil mas não decisiva' },
-  { key: 'autoridade',        label: 'Autoridade',        color: '#2D6A4F', description: 'Figuras oficiais — aliadas ou obstáculos' },
+  { key: 'vitima',              label: 'Vítima 1',              color: '#8B0000', description: 'Sofia — centro do caso' },
+  { key: 'vitima_2',            label: 'Vítima 2',              color: '#5a0000', description: 'Morta durante a campanha — era suspeita até morrer' },
+  { key: 'orquestrador',        label: 'Orquestrador',          color: '#6B0050', description: 'O arquiteto — nunca sai de casa, tudo aponta pra ele' },
+  { key: 'assassino_real',      label: 'Assassino Real',        color: '#eb5757', description: 'Assassino físico de Sofia — jamais suspeito pelos jogadores' },
+  { key: 'assassino_controlado',label: 'Assassino Controlado',  color: '#9b59b6', description: 'Instrumento sobrenatural — mata Ruth sem memória' },
+  { key: 'red_herring_forte',   label: 'Red Herring Forte',     color: '#e0a458', description: 'Suspeito crível com evidências sólidas contra ele' },
+  { key: 'red_herring_medio',   label: 'Red Herring Médio',     color: '#C9A84C', description: 'Suspeito com comportamento suspeito mas alibi possível' },
+  { key: 'red_herring_fraco',   label: 'Red Herring Fraco',     color: '#9b8ea0', description: 'Parece suspeito por contexto, alibi verificável' },
+  { key: 'testemunha_chave',    label: 'Testemunha Chave',      color: '#6b9fd4', description: 'Sabe algo crucial — precisa de abordagem cuidadosa' },
+  { key: 'testemunha',          label: 'Testemunha',            color: '#6B6560', description: 'Informação útil mas não decisiva' },
+  { key: 'autoridade',          label: 'Autoridade',            color: '#2D6A4F', description: 'Figura oficial — aliada ou obstáculo' },
 ]
 
 export default async function PersonagensPage() {
@@ -43,9 +47,18 @@ export default async function PersonagensPage() {
             style={{ fontFamily: "'Playfair Display', serif", color: '#F5F0E8' }}>
             Personagens
           </h1>
-          <p className="mt-1 text-sm" style={{ color: '#6B6560', fontFamily: "'Crimson Text', serif" }}>
-            {characters.length} pessoa(s) registrada(s) em Black Pines
-          </p>
+          <div className="mt-2 flex items-center gap-4">
+            <p className="text-sm" style={{ color: '#6B6560', fontFamily: "'Crimson Text', serif" }}>
+              {characters.length} pessoa(s) registrada(s) em Black Pines
+            </p>
+            <Link
+              href="/personagens/mapa"
+              className="text-xs px-3 py-1.5 rounded border transition-all hover:brightness-125"
+              style={{ borderColor: '#8B000044', color: '#8B0000', fontFamily: 'monospace', fontSize: '0.6rem', letterSpacing: '0.1em', background: '#8B000011' }}
+            >
+              ◈ MAPA GERAL
+            </Link>
+          </div>
         </div>
         <ZigzagDivider />
       </div>

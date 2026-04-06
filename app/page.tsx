@@ -66,7 +66,7 @@ export default async function Dashboard() {
               background: '#8B000015',
             }}
           >
-            Caso Aberto · Black Pines, WA
+            Caso Aberto · São Francisco de Paula, RS
           </div>
 
           <h1

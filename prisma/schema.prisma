@@ -76,5 +76,6 @@ model Event {
   description String?
   date        String
   type        String   @default("event")
+  order       Int      @default(999)
   createdAt   DateTime @default(now())
 }

@@ -198,3 +198,46 @@ select option {
 .type-clue { color: #C9A84C; }
 .type-death { color: #eb5757; }
 .type-discovery { color: #6fcf97; }
+
+/* Print — documento FBI */
+@media print {
+  @page { margin: 0.6in 0.7in; size: letter; }
+
+  aside,
+  aside *,
+  .no-print { display: none !important; visibility: hidden !important; }
+
+  body {
+    background: white !important;
+    color: #000 !important;
+    margin: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body::before { display: none !important; }
+
+  main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    overflow: visible !important;
+  }
+
+  .print-page-bg {
+    background: white !important;
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+
+  .print-document {
+    box-shadow: none !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    page-break-inside: auto;
+  }
+
+  /* garantir que tudo dentro do documento aparece */
+  .print-document * {
+    overflow: visible !important;
+  }
+}

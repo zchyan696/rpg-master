@@ -11,6 +11,9 @@ import {
   BookOpen,
   PenLine,
   Coffee,
+  Lock,
+  FileText,
+  BookMarked,
 } from 'lucide-react'
 
 const navItems = [
@@ -20,6 +23,11 @@ const navItems = [
   { href: '/caso', label: 'O Caso', icon: Search },
   { href: '/sessoes', label: 'Sessões', icon: BookOpen },
   { href: '/notas', label: 'Notas', icon: PenLine },
+]
+
+const docItems = [
+  { href: '/documentos/fbi', label: 'Despacho DPF', icon: FileText },
+  { href: '/documentos/diario-sofia', label: 'Diário da Sofia', icon: BookMarked },
 ]
 
 export default function Sidebar() {
@@ -114,6 +122,62 @@ export default function Sidebar() {
           )
         })}
       </nav>
+
+      {/* Documentos */}
+      <div className="px-3 pb-2 border-t border-[#1e1e1e] pt-3">
+        <div
+          className="px-3 mb-1"
+          style={{ fontFamily: "'Special Elite', monospace", fontSize: '0.55rem', letterSpacing: '0.2em', color: '#3a3a3a', textTransform: 'uppercase' }}
+        >
+          Documentos
+        </div>
+        {docItems.map((item) => {
+          const isActive = pathname.startsWith(item.href)
+          const Icon = item.icon
+          return (
+            <Link key={item.href} href={item.href}>
+              <motion.div
+                whileHover={{ x: 4 }}
+                transition={{ duration: 0.15 }}
+                className="relative flex items-center gap-3 px-3 py-2 rounded-sm cursor-pointer group"
+                style={{
+                  background: isActive ? 'rgba(139,0,0,0.15)' : 'transparent',
+                  borderLeft: isActive ? '2px solid #8B0000' : '2px solid transparent',
+                }}
+              >
+                <Icon size={14} style={{ color: isActive ? '#8B0000' : '#4a3a3a', flexShrink: 0 }} className="group-hover:text-[#C9A84C] transition-colors" />
+                <span className="text-sm" style={{ color: isActive ? '#F5F0E8' : '#6a5a5a', fontFamily: "'Crimson Text', serif", fontSize: '0.9rem' }}>
+                  {item.label}
+                </span>
+              </motion.div>
+            </Link>
+          )
+        })}
+      </div>
+
+      {/* Verdade — acesso restrito */}
+      <div className="px-3 pb-2 border-t border-[#1e1e1e] pt-2">
+        <Link href="/verdade">
+          <motion.div
+            whileHover={{ x: 4 }}
+            transition={{ duration: 0.15 }}
+            className="relative flex items-center gap-3 px-3 py-2 rounded-sm cursor-pointer group"
+            style={{
+              background: pathname === '/verdade' ? 'rgba(139,0,0,0.15)' : 'transparent',
+              borderLeft: pathname === '/verdade' ? '2px solid #8B0000' : '2px solid transparent',
+            }}
+          >
+            <Lock size={14} style={{ color: pathname === '/verdade' ? '#8B0000' : '#3a2a2a', flexShrink: 0 }} />
+            <span className="text-sm" style={{
+              color: pathname === '/verdade' ? '#F5F0E8' : '#4a3a3a',
+              fontFamily: "'Crimson Text', serif",
+              fontSize: '0.9rem',
+            }}>
+              A Verdade
+            </span>
+          </motion.div>
+        </Link>
+      </div>
 
       {/* Coffee footer */}
       <div className="px-5 py-5 border-t border-[#1e1e1e]">
